@@ -68,13 +68,13 @@ COPY supervisord.conf /etc
 #==========
 # Selenium & relaxing permissions for OpenShift and other non-sudo environments
 #==========
-RUN  mkdir -p /opt/selenium /opt/selenium/assets /var/run/supervisor /var/log/supervisor \
+RUN  mkdir -p /opt/selenium /opt/selenium/assets /var/run/supervisor /tmp/supervisor \
   && touch /opt/selenium/config.toml \
-  && chmod -R 777 /opt/selenium /opt/selenium/assets /var/run/supervisor /var/log/supervisor /etc/passwd \
+  && chmod -R 777 /opt/selenium /opt/selenium/assets /var/run/supervisor /tmp/supervisor /etc/passwd \
   && wget --no-verbose https://github.com/SeleniumHQ/selenium/releases/download/selenium-4.1.0/selenium-server-4.1.2.jar \
     -O /opt/selenium/selenium-server.jar \
-  && chgrp -R 0 /opt/selenium ${HOME} /opt/selenium/assets /var/run/supervisor /var/log/supervisor \
-  && chmod -R g=u /opt/selenium ${HOME} /opt/selenium/assets /var/run/supervisor /var/log/supervisor
+  && chgrp -R 0 /opt/selenium ${HOME} /opt/selenium/assets /var/run/supervisor /tmp/supervisor \
+  && chmod -R g=u /opt/selenium ${HOME} /opt/selenium/assets /var/run/supervisor /tmp/supervisor
 
 #===================================================
 # Run the following commands as non-privileged user

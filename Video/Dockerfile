@@ -27,7 +27,7 @@ COPY supervisord.conf /etc
 COPY entry_point.sh video.sh video_ready.py /opt/bin/
 RUN cd /opt/bin && pip install psutil
 
-RUN  mkdir -p /var/run/supervisor /var/log/supervisor /videos
+RUN  mkdir -p /var/run/supervisor /tmp/supervisor /videos
 
 ENTRYPOINT ["/opt/bin/entry_point.sh"]
 CMD ["/opt/bin/entry_point.sh"]
